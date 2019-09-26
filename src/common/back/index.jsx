@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 export default function Back(props) {
     const {
-        onBack = () => window.history.back(),
+        onBack = window.history.back,
         className = "back",
         width = "42",
         height = "42",
@@ -13,7 +13,7 @@ export default function Back(props) {
         fill = "none"
     } = props
     return (
-        <div className={ className } onClick={ onBack }>
+        <div className={ className } onClick={ ()=> onBack() }>
                 <svg width={ width } height={ height }>
                     <polyline
                         points={ points }

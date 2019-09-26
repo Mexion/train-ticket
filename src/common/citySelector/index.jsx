@@ -161,6 +161,7 @@ const Suggest = memo(function Suggest(props) {
     const [result, setResult] = useState('');
 
     useEffect(() => {
+        if(searchKey.length <= 0) return;
         fetch(`/rest/search?key=${ encodeURIComponent(searchKey) }`)
             .then(res => res.json())
             .then(data => {
@@ -219,7 +220,7 @@ const CitySelector = memo(function CitySelector(props) {
     } = props;
 
     const [searchKey, setSearchKey] = useState('');
-    const key = useMemo(() => searchKey.trim(),[searchKey]);
+    const key = useMemo(() => searchKey.trim(), [searchKey]);
 
     useEffect(() => {
         if(!isCitySelectorVisible || cityData || isLoadingCityData) {
@@ -236,7 +237,7 @@ const CitySelector = memo(function CitySelector(props) {
     //封装一个函数，在不同的条件下渲染不同的内容，比如加载中，加载错误
     const outputCitySections = () => {
         if(isLoadingCityData) {
-            return (<div>Loading</div>);
+            return (<div className="city-loading">Loading</div>);
         }
         if(cityData) {
             return (
@@ -247,7 +248,7 @@ const CitySelector = memo(function CitySelector(props) {
                 />
             );
         }
-        return (<div>error</div>);
+        return (<div className="city-error">error</div>);
     }
 
     return (

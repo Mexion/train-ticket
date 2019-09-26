@@ -6,7 +6,8 @@ import {
     SET_CITY_DATA,
     SET_IS_LOADING_CITY_DATA,
     SET_IS_DATE_SELECTOR_VISIBLE,
-    SET_HIGH_SPEED
+    SET_HIGH_SPEED,
+    SET_DEPART_DATE
 } from './actionTypes';
 
 export function setFromAction(from) {
@@ -50,7 +51,7 @@ export function setHighSpeedAction() {
         const { highSpeed } = getState();
         dispatch({
             type: SET_HIGH_SPEED,
-            Payload: !highSpeed
+            payload: !highSpeed
         });
     }
 }
@@ -134,5 +135,12 @@ export function fetchCityDataAction() {
             .catch(() => {
                 dispatch(setIsLoadingCityDataAction(false));
             })
+    }
+}
+
+export function setDepartDateAction(departDate) {
+    return {
+        type: SET_DEPART_DATE,
+        payload: departDate
     }
 }

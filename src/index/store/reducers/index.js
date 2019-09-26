@@ -6,7 +6,8 @@ import {
     SET_CITY_DATA,
     SET_IS_LOADING_CITY_DATA,
     SET_IS_DATE_SELECTOR_VISIBLE,
-    SET_HIGH_SPEED
+    SET_HIGH_SPEED,
+    SET_DEPART_DATE
 } from '../actionTypes';
 
 
@@ -83,4 +84,13 @@ export default {
         }
         return state;
     },
+    departDate(state=Date.now(), action) {
+        const { type, payload } = action;
+        switch(type) {
+            case SET_DEPART_DATE:
+                return payload;
+            default:
+        }
+        return state;
+    }
 };

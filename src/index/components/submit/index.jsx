@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 
 import './index.css';
 
-function Submit(props) {
-    return <div> Submit </div>
-}
+const Submit = memo(function Submit() {
+    return (
+        <div className="submit">
+            <button 
+                type="submit"
+                className="submit-button">搜索</button>
+        </div>);
+});
 
 
 export default Submit;

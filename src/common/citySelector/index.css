@@ -99,6 +99,14 @@
     border-bottom: 0;
 }
 
+.city-loading {
+    text-align: center;
+}
+
+.city-error {
+    text-align: center;
+}
+
 .city-index {
     width: 30px;
     position: fixed;
