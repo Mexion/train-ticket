@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Back from '../back';
+import Back from '../Back';
 
 import './index.css';
 

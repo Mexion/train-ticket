@@ -6,7 +6,7 @@ export default createStore(
     combineReducers(reducers),
     {
         from: '北京',
-        to: '上海',
+        to: '南京',
         isCitySelectorVisible: false,
         currentSelectingLeftCity: false,
         cityData: null,

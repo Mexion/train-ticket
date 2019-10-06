@@ -21,7 +21,7 @@ export default {
         }
         return state;
     },
-    to(state="上海", action) {
+    to(state="南京", action) {
         const { type, payload } = action;
         switch (type) {
             case SET_TO:

@@ -2,13 +2,13 @@ import React, { Fragment, useCallback, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import Header from '../common/header';
-import Journey from './components/journey';
-import DepartDate from './components/departDate';
-import HighSpeed from './components/highSpeed';
-import Submit from './components/submit';
-import CitySelector from '../common/citySelector';
-import DateSelector from '../common/dateSelector';
+import Header from '../common/Header';
+import Journey from './components/Journey';
+import DepartDate from './components/DepartDate';
+import HighSpeed from './components/HighSpeed';
+import Submit from './components/Submit';
+import CitySelector from '../common/CitySelector';
+import DateSelector from '../common/DateSelector';
 
 import cutTime from '../utility/cutTime';
 

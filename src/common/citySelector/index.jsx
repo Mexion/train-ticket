@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo,useCallback, memo } from 'react';
 import PropTypes from 'prop-types';
 
-import Back from '../back';
+import Back from '../Back';
 
 import './index.css';
 
@@ -249,7 +249,7 @@ const CitySelector = memo(function CitySelector(props) {
             );
         }
         return (<div className="city-error">error</div>);
-    }
+    };
 
     return (
         <div className={`city-selector ${ !isCitySelectorVisible  ? 'hidden' : ''}`}>
