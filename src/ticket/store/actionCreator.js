@@ -12,6 +12,8 @@ import {
     SET_SEARCH_PARSED
 } from './actionTypes';
 
+import cutTime from '../../utility/cutTime';
+
 
 export function setDepartDateAction(departDate) {
     return {
@@ -97,4 +99,28 @@ export function setSearchParsedAction(searchParsed) {
         payload: searchParsed
     };
 
+}
+
+export function setPrevDateAction() {
+    return (dispatch, getState) => {
+        const {
+            departDate
+        } = getState();
+        dispatch({
+            type: SET_DEPART_DATE,
+            payload: cutTime(departDate) - 86400 * 1000
+        });
+    };
+}
+
+export function setNextDateAction() {
+    return (dispatch, getState) => {
+        const {
+            departDate
+        } = getState();
+        dispatch({
+            type: SET_DEPART_DATE,
+            payload: cutTime(departDate) + 86400 * 1000
+        });
+    };
 }

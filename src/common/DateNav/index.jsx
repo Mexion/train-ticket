@@ -17,7 +17,7 @@ const DateNav = memo(function DateNav(props) {
      const currentString = useMemo(() => {
         const day = dayjs(date);
         return day.format('M月D日') + day.locale('zh-cn').format('dddd');
-     }, [date])
+     }, [date]);
 
     return (
         <div className="nav">
