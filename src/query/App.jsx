@@ -67,7 +67,7 @@ function App(props) {
     } = props;
 
     const onBack = useCallback(() => {
-        window.history.back()
+        window.history.back();
     }, []);
 
     //这里主要是解析参数并根据参数修改store中的值

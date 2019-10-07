@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import URI from 'urijs';
 import dayjs from 'dayjs';
 import cutTime from '../utility/cutTime';
+import { TrainContext } from './context';
 
 import Header from '../common/Header';
 import DateNav from '../common/DateNav';
@@ -156,6 +157,9 @@ function App(props) {
                     durationStr={ durationStr }
                     { ...detailCbs }/>
             </div>
+            <TrainContext.Provider value={ trainNumber, departStation, arriveStation, departDate }>
+                <Candidate tickets={ tickets }/>
+            </TrainContext.Provider>
             { isScheduleVisible &&
                 <div 
                     className="mask" 
