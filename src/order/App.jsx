@@ -105,6 +105,13 @@ function App(props) {
         }, dispatch);
     }, [dispatch]);
 
+    //绑定传入Choose组件的回调
+    const chooseCbs = useMemo(() => {
+        return bindActionCreators({
+            updatePassenger: updatePassengerAction
+        }, dispatch)
+    }, [dispatch])
+
     //如果解析未成功，什么都不渲染
     if(!searchParsed) {
         return null;
@@ -138,6 +145,16 @@ function App(props) {
             <Passengers 
                 passengers={ passengers }
                 { ...passengersCbs }/>
+            {
+                passengers.length > 0 && (
+                    <Choose
+                        passengers={ passengers }
+                        { ...chooseCbs }/>
+                )
+            }
+            <Account
+                length={ passengers.length }
+                price={ price }/>
             <Menu
                 show={ isMenuVisible }
                 { ...menu }
