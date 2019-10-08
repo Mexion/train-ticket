@@ -9,8 +9,8 @@ import {
     SET_DURATION_STR,
     SET_TICKETS,
     SET_IS_SCHEDULE_VISIBLE,
-    SET_SEARCH_PARSED
-} from '../actionTypes';
+    SET_SEARCH_PARSED,
+} from "../actionTypes";
 
 export default {
     departDate(state = Date.now(), action) {
@@ -111,5 +111,5 @@ export default {
             default:
         }
         return state;
-    }
+    },
 };

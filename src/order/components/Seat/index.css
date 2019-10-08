@@ -23,7 +23,7 @@
 }
 
 .ticket p .ticket-price::before {
-    content: '¥';
+    content: "¥";
     font-size: 14px;
 }
 

@@ -1,20 +1,19 @@
 import {
-        SET_TRAIN_NUMBER,
-        SET_DEPART_STATION,
-        SET_ARRIVE_STATION,
-        SET_SEAT_TYPE,
-        SET_DEPART_DATE,
-        SET_ARRIVE_DATE,
-        SET_DEPART_TIME_STR,
-        SET_ARRIVE_TIME_STR,
-        SET_DURATION_STR,
-        SET_PRICE,
-        SET_PASSENGERS,
-        SET_MENU,
-        SET_IS_MENU_VISIBLE,
-        SET_SEARCH_PARSED
-} from './actionTypes';
-
+    SET_TRAIN_NUMBER,
+    SET_DEPART_STATION,
+    SET_ARRIVE_STATION,
+    SET_SEAT_TYPE,
+    SET_DEPART_DATE,
+    SET_ARRIVE_DATE,
+    SET_DEPART_TIME_STR,
+    SET_ARRIVE_TIME_STR,
+    SET_DURATION_STR,
+    SET_PRICE,
+    SET_PASSENGERS,
+    SET_MENU,
+    SET_IS_MENU_VISIBLE,
+    SET_SEARCH_PARSED,
+} from "./actionTypes";
 
 export function setTrainNumberAction(trainNumber) {
     return {
@@ -108,23 +107,22 @@ export function fetchInitialAction(url) {
         fetch(url)
             .then(res => res.json())
             .then(data => {
-                const { 
+                const {
                     departTimeStr,
                     arriveTimeStr,
                     arriveDate,
                     durationStr,
-                    price
-                 } = data;
-                 //将数据保存到store中
-                 dispatch(setDepartTimeStrAction(departTimeStr));
-                 dispatch(setArriveTimeStrAction(arriveTimeStr));
-                 dispatch(setArriveDateAction(arriveDate));
-                 dispatch(setDurationStrAction(durationStr));
-                 dispatch(setPriceAction(price));
-            })
+                    price,
+                } = data;
+                //将数据保存到store中
+                dispatch(setDepartTimeStrAction(departTimeStr));
+                dispatch(setArriveTimeStrAction(arriveTimeStr));
+                dispatch(setArriveDateAction(arriveDate));
+                dispatch(setDurationStrAction(durationStr));
+                dispatch(setPriceAction(price));
+            });
     };
 }
-
 
 //先生成一个变量以确保每个乘客都有不同的id
 let passengerId = 0;
@@ -135,30 +133,32 @@ export function createAdultAction() {
         const { passengers } = getState();
 
         //遍历判断上一个乘客的信息是否填写完毕
-        for(let passenger of passengers) {
+        for (let passenger of passengers) {
             const keys = Object.keys(passenger);
-            for(let key of keys) {
+            for (let key of keys) {
                 //如果有一个字段为空则表示未填写完毕，直接返回不允许创建新的乘客
-                if(!passenger[key]) {
+                if (!passenger[key]) {
                     return;
                 }
             }
         }
 
         //为乘客列表增加一个成人
-        dispatch(setPassengersAction([
-            ...passengers,
-            {   //id自增
-                id: ++passengerId,
-                name: '',
-                ticketType: 'adult',
-                identityCard: '',
-                seat: 'Z'
-            }
-        ]));
+        dispatch(
+            setPassengersAction([
+                ...passengers,
+                {
+                    //id自增
+                    id: ++passengerId,
+                    name: "",
+                    ticketType: "adult",
+                    identityCard: "",
+                    seat: "Z",
+                },
+            ])
+        );
     };
 }
-
 
 //生成儿童对象的action
 export function createChildAction() {
@@ -179,29 +179,32 @@ export function createChildAction() {
             }
 
             //如果找到了成人，保存变量
-            if(passenger.ticketType === 'adult') {
+            if (passenger.ticketType === "adult") {
                 adultFound = passenger.id;
             }
         }
 
-        if(!adultFound) {
-            alert('请至少正确添加一个同行成人！');
+        if (!adultFound) {
+            alert("请至少正确添加一个同行成人！");
             return;
         }
 
         //为乘客列表增加一个儿童
-        dispatch(setPassengersAction([
-            ...passengers,
-            { //id自增
-                id: ++passengerId,
-                name: '',
-                gender: 'none',
-                birthday: '',
-                followAdult: adultFound,
-                ticketType: 'child',
-                seat: 'Z'
-            }
-        ]));
+        dispatch(
+            setPassengersAction([
+                ...passengers,
+                {
+                    //id自增
+                    id: ++passengerId,
+                    name: "",
+                    gender: "none",
+                    birthday: "",
+                    followAdult: adultFound,
+                    ticketType: "child",
+                    seat: "Z",
+                },
+            ])
+        );
     };
 }
 
@@ -215,31 +218,29 @@ export function removePassengerAction(id) {
             return passenger.id !== id && passenger.followAdult !== id;
         });
         dispatch(setPassengersAction(newPassengers));
-    }
+    };
 }
-
 
 //更新乘客信息的异步action
 export function updatePassengerAction(id, updateData, keysToBeRemoved = []) {
     return (dispatch, getState) => {
         const { passengers } = getState();
         for (let i = 0; i < passengers.length; ++i) {
-            if(passengers[i].id === id) {
+            if (passengers[i].id === id) {
                 const newPassengers = [...passengers];
                 newPassengers[i] = Object.assign(newPassengers[i], updateData);
-                
+
                 //删除指定key的字段
-                for(let key of keysToBeRemoved) {
+                for (let key of keysToBeRemoved) {
                     delete newPassengers[i][key];
                 }
 
                 dispatch(setPassengersAction(newPassengers));
                 break;
-            } 
+            }
         }
-    }
+    };
 }
-
 
 //显示选择菜单的action
 export function showMenuAction(menu) {
@@ -250,29 +251,34 @@ export function showMenuAction(menu) {
 }
 
 export function showGenderMenuAction(id) {
-    return(dispatch, getState) => {
+    return (dispatch, getState) => {
         const { passengers } = getState();
         //校验id是否存在
         const passenger = passengers.find(passenger => passenger.id === id);
-        if(!passenger) {
+        if (!passenger) {
             return;
         }
 
-        dispatch(showMenuAction({
-            options: [{
-                title: '男',
-                value: 'male',
-                active: 'male' === passenger.gender
-            },{
-                title: '女',
-                value: 'female',
-                active: 'female' === passenger.gender
-            }],
-            onPress(gender) {
-                dispatch(updatePassengerAction(id, { gender }));
-                dispatch(hideMenuAction());
-            }
-        }));
+        dispatch(
+            showMenuAction({
+                options: [
+                    {
+                        title: "男",
+                        value: "male",
+                        active: "male" === passenger.gender,
+                    },
+                    {
+                        title: "女",
+                        value: "female",
+                        active: "female" === passenger.gender,
+                    },
+                ],
+                onPress(gender) {
+                    dispatch(updatePassengerAction(id, { gender }));
+                    dispatch(hideMenuAction());
+                },
+            })
+        );
     };
 }
 
@@ -287,23 +293,24 @@ export function showFollowAdultMenuAction(id) {
             return;
         }
 
-        dispatch(showMenuAction({
-            onPress(followAdult) {
-                dispatch(updatePassengerAction(id, { followAdult }));
-                dispatch(hideMenuAction());
-            },
-            options: passengers
-                .filter(passenger => passenger.ticketType === 'adult')
-                .map(adult => {
-                   return {
-                        title: adult.name,
-                        value: adult.id,
-                        active: adult.id === passenger.followAdult
-                   }
-                })
-        }));
-
-    }
+        dispatch(
+            showMenuAction({
+                onPress(followAdult) {
+                    dispatch(updatePassengerAction(id, { followAdult }));
+                    dispatch(hideMenuAction());
+                },
+                options: passengers
+                    .filter(passenger => passenger.ticketType === "adult")
+                    .map(adult => {
+                        return {
+                            title: adult.name,
+                            value: adult.id,
+                            active: adult.id === passenger.followAdult,
+                        };
+                    }),
+            })
+        );
+    };
 }
 
 //显示选择成人或儿童票菜单的action
@@ -317,41 +324,60 @@ export function showTicketTypeMenuAction(id) {
             return;
         }
 
-        dispatch(showMenuAction({
-            onPress(ticketType) {
-                if('adult' === ticketType) {
-                    dispatch(updatePassengerAction(id, {
-                        ticketType,
-                        identityCard: ''
-                    }, ['gender', 'followAdult', 'birthday']));
-                } else {
-                    const adult = passengers.find(passenger => passenger.id !== id && passenger.ticketType === 'adult');
-                    if(!adult) {
-                        alert('没有其他成人乘客');
+        dispatch(
+            showMenuAction({
+                onPress(ticketType) {
+                    if ("adult" === ticketType) {
+                        dispatch(
+                            updatePassengerAction(
+                                id,
+                                {
+                                    ticketType,
+                                    identityCard: "",
+                                },
+                                ["gender", "followAdult", "birthday"]
+                            )
+                        );
                     } else {
-                        dispatch(updatePassengerAction(id, {
-                            ticketType,
-                            gender: '',
-                            followAdult: adult.id,
-                            birthday: ''
-                        }, ['identityCard']));
+                        const adult = passengers.find(
+                            passenger =>
+                                passenger.id !== id &&
+                                passenger.ticketType === "adult"
+                        );
+                        if (!adult) {
+                            alert("没有其他成人乘客");
+                        } else {
+                            dispatch(
+                                updatePassengerAction(
+                                    id,
+                                    {
+                                        ticketType,
+                                        gender: "",
+                                        followAdult: adult.id,
+                                        birthday: "",
+                                    },
+                                    ["identityCard"]
+                                )
+                            );
+                        }
                     }
-                }
-                dispatch(hideMenuAction());
-            },
-            options: [
-                {
-                    title: '成人票',
-                    value: 'adult',
-                    active: 'adult' === passenger.ticketType
-                }, {
-                    title: '儿童票',
-                    value: 'child',
-                    active: 'child' === passenger.ticketType
-                }
-            ]
-        }))
-    }
+                    dispatch(hideMenuAction());
+                },
+                options: [
+                    {
+                        title: "成人票",
+                        value: "adult",
+                        active: "adult" === passenger.ticketType,
+                    },
+                    {
+                        title: "儿童票",
+                        value: "child",
+                        active: "child" === passenger.ticketType,
+                    },
+                ],
+            })
+        );
+    };
 }
 
 //隐藏选择菜单的action

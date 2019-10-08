@@ -1,9 +1,9 @@
-import React, { memo, useState, useMemo, useRef, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { memo, useState, useMemo, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 
-import useWinSize from '../../../common/hooks/useWinSize';
+import useWinSize from "../../../common/hooks/useWinSize";
 
-import './index.css';
+import "./index.css";
 
 const Slider = memo(function Slider(props) {
     const {
@@ -33,15 +33,15 @@ const Slider = memo(function Slider(props) {
     //使用ref来记录上一次currentHours的值
     const prevCurrentStartHours = useRef(currentStartHours);
     const prevCurrentEndHours = useRef(currentEndHours);
-    
+
     //因为currentStartHours和currentEndHours在延迟初始化函数中使用
     //所以只会在组件第一次渲染中被使用，即使后面值发生了改变也不会重新运算
     //所以需要定义上面的Ref来记录上一次的hours以及后面手动比对更新
-    const [start, setStart] = useState(() => currentStartHours / 24 * 100);
-    const [end, setEnd] = useState(() => currentEndHours / 24 * 100);
+    const [start, setStart] = useState(() => (currentStartHours / 24) * 100);
+    const [end, setEnd] = useState(() => (currentEndHours / 24) * 100);
 
     //如果currentHours的值有改变，则手动更新start和end
-    if(prevCurrentStartHours.current !== currentStartHours) {
+    if (prevCurrentStartHours.current !== currentStartHours) {
         setStart((currentStartHours / 24) * 100);
         prevCurrentStartHours.current = currentStartHours;
     }
@@ -52,10 +52,10 @@ const Slider = memo(function Slider(props) {
 
     //为了防止出现精度溢出，控制变量范围
     const startPercent = useMemo(() => {
-        if(start > 100) {
+        if (start > 100) {
             return 100;
         }
-        if(start < 0) {
+        if (start < 0) {
             return 0;
         }
         return start;
@@ -73,22 +73,21 @@ const Slider = memo(function Slider(props) {
 
     //将百分比转换为24小时以显示时间
     const startHours = useMemo(() => {
-        return Math.round(startPercent * 24 / 100);
+        return Math.round((startPercent * 24) / 100);
     }, [startPercent]);
 
     const endHours = useMemo(() => {
-        return Math.round(endPercent * 24 / 100);
+        return Math.round((endPercent * 24) / 100);
     }, [endPercent]);
 
     //在时间的前后补零
     const startText = useMemo(() => {
-        return String(startHours).padStart(2, '0') + ':00';
+        return String(startHours).padStart(2, "0") + ":00";
     }, [startHours]);
 
     const endText = useMemo(() => {
-        return String(endHours).padStart(2, '0') + ':00';
+        return String(endHours).padStart(2, "0") + ":00";
     }, [endHours]);
-
 
     //定义绑定事件的回调函数
     function onStartTouchBegin(e) {
@@ -126,7 +125,6 @@ const Slider = memo(function Slider(props) {
     //这个副作用用于测量和存储slide的宽度
     //依赖于自定义hooks中的winSize.width，当页面缩放时会重新获取页面宽高，从而重新计算滑动条宽度
     useEffect(() => {
-        
         rangeWidth.current = parseFloat(
             window.getComputedStyle(range.current).width
         );
@@ -138,52 +136,27 @@ const Slider = memo(function Slider(props) {
         const handleStart = startHandle.current;
         const handleEnd = endHandle.current;
         //这里绑定左边滑块的事件
-        handleStart.addEventListener(
-            'touchstart',
-            onStartTouchBegin,
-            false
-        );
-        handleStart.addEventListener(
-            'touchmove',
-            onStartTouchMove,
-            false
-        );
+        handleStart.addEventListener("touchstart", onStartTouchBegin, false);
+        handleStart.addEventListener("touchmove", onStartTouchMove, false);
         //绑定右边滑块事件
-        handleEnd.addEventListener(
-            'touchstart',
-            onEndTouchBegin,
-            false
-        );
-        handleEnd.addEventListener(
-            'touchmove',
-            onEndTouchMove,
-            false
-        );
+        handleEnd.addEventListener("touchstart", onEndTouchBegin, false);
+        handleEnd.addEventListener("touchmove", onEndTouchMove, false);
 
         //useEffect返回一个函数来解绑事件
         return () => {
             handleStart.removeEventListener(
-                'touchstart',
+                "touchstart",
                 onStartTouchBegin,
                 false
             );
             handleStart.removeEventListener(
-                'touchmove',
+                "touchmove",
                 onStartTouchMove,
                 false
             );
-            handleEnd.removeEventListener(
-                'touchstart',
-                onEndTouchBegin,
-                false
-            );
-            handleEnd.removeEventListener(
-                'touchmove',
-                onEndTouchMove,
-                false
-            );
-        }
-        
+            handleEnd.removeEventListener("touchstart", onEndTouchBegin, false);
+            handleEnd.removeEventListener("touchmove", onEndTouchMove, false);
+        };
     });
 
     //上报数据到上级组件
@@ -191,25 +164,35 @@ const Slider = memo(function Slider(props) {
         onStartChanged(startHours);
     }, [startHours, onStartChanged]);
 
-     useEffect(() => {
-         onEndChanged(endHours);
-     }, [endHours, onEndChanged]);
+    useEffect(() => {
+        onEndChanged(endHours);
+    }, [endHours, onEndChanged]);
 
     return (
         <div className="option">
-            <h3>{ title }</h3>
+            <h3>{title}</h3>
             <div className="range-slider">
-                <div className="slider" ref={ range }>
-                    <div 
+                <div className="slider" ref={range}>
+                    <div
                         className="slider-range"
-                        style={{ 
-                            left: startPercent + '%',
-                            width: endPercent - startPercent + '%' }}></div>
-                    <i ref={ startHandle } className="slider-handle" style={{ left: startPercent + '%' }}>
-                        <span>{ startText }</span>
+                        style={{
+                            left: startPercent + "%",
+                            width: endPercent - startPercent + "%",
+                        }}
+                    ></div>
+                    <i
+                        ref={startHandle}
+                        className="slider-handle"
+                        style={{ left: startPercent + "%" }}
+                    >
+                        <span>{startText}</span>
                     </i>
-                    <i ref={ endHandle } className="slider-handle" style={{ left: endPercent + '%' }}>
-                        <span>{ endText }</span>
+                    <i
+                        ref={endHandle}
+                        className="slider-handle"
+                        style={{ left: endPercent + "%" }}
+                    >
+                        <span>{endText}</span>
                     </i>
                 </div>
             </div>
@@ -223,7 +206,6 @@ Slider.propTypes = {
     currentEndHours: PropTypes.number.isRequired,
     onStartChanged: PropTypes.func.isRequired,
     onEndChanged: PropTypes.func.isRequired,
-}
-
+};
 
 export default Slider;

@@ -1,17 +1,22 @@
-import { useCallback } from 'react';
-import cutTime from '../../utility/cutTime';
+import { useCallback } from "react";
+import cutTime from "../../utility/cutTime";
 
-export default function useDateNav(departDate, dispatch, setPrevDateAction, setNextDateAction) {
-     const isPrevDisabled = cutTime(departDate) <= cutTime();
+export default function useDateNav(
+    departDate,
+    dispatch,
+    setPrevDateAction,
+    setNextDateAction
+) {
+    const isPrevDisabled = cutTime(departDate) <= cutTime();
     const isNextDisabled = cutTime(departDate) - cutTime() > 30 * 86400 * 1000;
 
     const prevClick = useCallback(() => {
-        if(isPrevDisabled) return;
+        if (isPrevDisabled) return;
         dispatch(setPrevDateAction());
     }, [isPrevDisabled, setPrevDateAction, dispatch]);
 
     const nextClick = useCallback(() => {
-        if(isNextDisabled) return;
+        if (isNextDisabled) return;
         dispatch(setNextDateAction());
     }, [isNextDisabled, setNextDateAction, dispatch]);
 
@@ -19,6 +24,6 @@ export default function useDateNav(departDate, dispatch, setPrevDateAction, setN
         isPrevDisabled,
         isNextDisabled,
         prevClick,
-        nextClick
+        nextClick,
     };
 }

@@ -19,36 +19,35 @@ import {
     SET_DEPART_TIME_START,
     SET_DEPART_TIME_END,
     SET_ARRIVE_TIME_START,
-    SET_ARRIVE_TIME_END
-} from './actionTypes';
+    SET_ARRIVE_TIME_END,
+} from "./actionTypes";
 
-import { ORDER_DEPART, ORDER_DURATION } from '../constant';
-import cutTime from '../../utility/cutTime';
-
+import { ORDER_DEPART, ORDER_DURATION } from "../constant";
+import cutTime from "../../utility/cutTime";
 
 export function setFromAction(from) {
     return {
         type: SET_FROM,
-        payload: from
+        payload: from,
     };
 }
 export function setToAction(to) {
     return {
         type: SET_TO,
-        payload: to
+        payload: to,
     };
 }
 export function setDepartDateAction(departDate) {
     return {
         type: SET_DEPART_DATE,
-        payload: departDate
+        payload: departDate,
     };
 }
 
 export function setHighSpeedAction(highSpeed) {
     return {
         type: SET_HIGH_SPEED,
-        payload: highSpeed
+        payload: highSpeed,
     };
 }
 
@@ -57,147 +56,146 @@ export function toggleHighSpeedAction() {
         const { highSpeed } = getState();
         dispatch({
             type: SET_HIGH_SPEED,
-            payload: !highSpeed
-        })
+            payload: !highSpeed,
+        });
     };
 }
 export function setTrainListAction(trainList) {
     return {
         type: SET_TRAIN_LIST,
-        payload: trainList
+        payload: trainList,
     };
 }
 export function setSearchParsedAction(searchParse) {
     return {
         type: SET_SEARCH_PARSED,
-        payload: searchParse
+        payload: searchParse,
     };
 }
 export function toggleOrderTypeAction() {
     return (dispatch, getState) => {
         const { orderType } = getState();
-        if(orderType === ORDER_DEPART) {
+        if (orderType === ORDER_DEPART) {
             dispatch({
                 type: SET_ORDER_TYPE,
-                payload: ORDER_DURATION
+                payload: ORDER_DURATION,
             });
-        } else{
+        } else {
             dispatch({
                 type: SET_ORDER_TYPE,
-                payload: ORDER_DEPART
+                payload: ORDER_DEPART,
             });
         }
-        
     };
 }
 export function toggleIsFilterVisibleAction() {
     return (dispatch, getState) => {
-    const { isFilterVisible } = getState();
+        const { isFilterVisible } = getState();
         dispatch({
             type: SET_IS_FILTER_VISIBLE,
-            payload: !isFilterVisible
+            payload: !isFilterVisible,
         });
     };
 }
 export function toggleOnlyTicketsAction() {
     return (dispatch, getState) => {
         const { onlyTickets } = getState();
-        console.log(onlyTickets)
+        console.log(onlyTickets);
         dispatch({
             type: SET_ONLY_TICKETS,
-            payload: !onlyTickets
+            payload: !onlyTickets,
         });
     };
 }
 export function setTicketTypesAction(ticketTypes) {
     return {
         type: SET_TICKET_TYPES,
-        payload: ticketTypes
+        payload: ticketTypes,
     };
 }
 export function setCheckedTicketTypesAction(checkedTicketTypes) {
     return {
         type: SET_CHECKED_TICKET_TYPES,
-        payload: checkedTicketTypes
+        payload: checkedTicketTypes,
     };
 }
 export function setTrainTypesAction(trainTypes) {
     return {
         type: SET_TRAIN_TYPES,
-        payload: trainTypes
+        payload: trainTypes,
     };
 }
 export function setCheckedTrainTypesAction(checkedTrainTypes) {
     return {
         type: SET_CHECKED_TRAIN_TYPES,
-        payload: checkedTrainTypes
+        payload: checkedTrainTypes,
     };
 }
 export function setDepartStationsAction(departStations) {
     return {
         type: SET_DEPART_STATIONS,
-        payload: departStations
+        payload: departStations,
     };
 }
 export function setCheckedDepartStationsAction(checkedDepartStations) {
     return {
         type: SET_CHECKED_DEPART_STATIONS,
-        payload: checkedDepartStations
+        payload: checkedDepartStations,
     };
 }
 export function setArriveStationsAction(arriveStations) {
     return {
         type: SET_ARRIVE_STATIONS,
-        payload: arriveStations
+        payload: arriveStations,
     };
 }
 export function setCheckedArriveStationsAction(checkedArriveStations) {
     return {
         type: SET_CHECKED_ARRIVE_STATIONS,
-        payload: checkedArriveStations
+        payload: checkedArriveStations,
     };
 }
 export function setDepartTimeStartAction(departTimeStart) {
     return {
         type: SET_DEPART_TIME_START,
-        payload: departTimeStart
+        payload: departTimeStart,
     };
 }
 export function setDepartTimeEndAction(departTimeEnd) {
     return {
         type: SET_DEPART_TIME_END,
-        payload: departTimeEnd
+        payload: departTimeEnd,
     };
 }
 export function setArriveTimeStartAction(arriveTimeStart) {
     return {
         type: SET_ARRIVE_TIME_START,
-        payload: arriveTimeStart
+        payload: arriveTimeStart,
     };
 }
 export function setArriveTimeEndAction(arriveTimeEnd) {
     return {
         type: SET_ARRIVE_TIME_END,
-        payload: arriveTimeEnd
+        payload: arriveTimeEnd,
     };
 }
 
 export function setPrevDateAction() {
-   return (dispatch, getState) => {
-       const { departDate } = getState();
-       dispatch({
-           type: SET_DEPART_DATE,
-           payload: cutTime(departDate) - 86400 * 1000
-       });
-   };
+    return (dispatch, getState) => {
+        const { departDate } = getState();
+        dispatch({
+            type: SET_DEPART_DATE,
+            payload: cutTime(departDate) - 86400 * 1000,
+        });
+    };
 }
 
 export function setNextDateAction() {
     return (dispatch, getState) => {
-       const { departDate } = getState();
-       dispatch({
-           type: SET_DEPART_DATE,
-           payload: cutTime(departDate) + 86400 * 1000
-       });
-   };
+        const { departDate } = getState();
+        dispatch({
+            type: SET_DEPART_DATE,
+            payload: cutTime(departDate) + 86400 * 1000,
+        });
+    };
 }

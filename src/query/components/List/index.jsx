@@ -1,12 +1,11 @@
-import React, { memo, useMemo } from 'react';
-import PropTypes from 'prop-types';
-import URI from 'urijs';
+import React, { memo, useMemo } from "react";
+import PropTypes from "prop-types";
+import URI from "urijs";
 
-import './index.css';
-
+import "./index.css";
 
 const ListItem = memo(function ListItem(props) {
-    const { 
+    const {
         dTime,
         aTime,
         dStation,
@@ -15,44 +14,46 @@ const ListItem = memo(function ListItem(props) {
         date,
         time,
         priceMsg,
-        dayAfter
+        dayAfter,
     } = props;
 
     const url = useMemo(() => {
-        return new URI('ticket.html')
-        .setSearch('aStation', aStation)
-        .setSearch('dStation', dStation)
-        .setSearch('trainNumber', trainNumber)
-        .setSearch('date', date)
-        .toString();
-    }, [aStation, dStation, trainNumber, date])
+        return new URI("ticket.html")
+            .setSearch("aStation", aStation)
+            .setSearch("dStation", dStation)
+            .setSearch("trainNumber", trainNumber)
+            .setSearch("date", date)
+            .toString();
+    }, [aStation, dStation, trainNumber, date]);
 
     return (
         <li className="list-item">
-            <a href={ url }>
+            <a href={url}>
                 <span className="item-time">
-                    <em>{ dTime }</em>
-                    <br/>
-                    <em className="em-light">{ aTime } <i className="time-after">{ dayAfter }</i></em>
+                    <em>{dTime}</em>
+                    <br />
+                    <em className="em-light">
+                        {aTime} <i className="time-after">{dayAfter}</i>
+                    </em>
                 </span>
                 <span className="item-stations">
                     <em>
                         <i className="train-station train-start">始</i>
-                        { dStation }
+                        {dStation}
                     </em>
                     <em className="em-light">
                         <i className="train-station train-end">终</i>
-                        { aStation }
+                        {aStation}
                     </em>
                 </span>
                 <span className="item-train">
-                    <em>{ trainNumber }</em>
-                    <br/>
-                    <em className="em-light">{ time }</em>
+                    <em>{trainNumber}</em>
+                    <br />
+                    <em className="em-light">{time}</em>
                 </span>
                 <span className="item-ticket">
-                    <em>{ priceMsg }</em>
-                    <br/>
+                    <em>{priceMsg}</em>
+                    <br />
                     <em className="em-light-orange">可抢票</em>
                 </span>
             </a>
@@ -69,26 +70,22 @@ ListItem.propTypes = {
     date: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
     priceMsg: PropTypes.string.isRequired,
-    dayAfter: PropTypes.string.isRequired
+    dayAfter: PropTypes.string.isRequired,
 };
 
 const List = memo(function List(props) {
-    const {
-        list
-    } = props;
+    const { list } = props;
     return (
         <ul className="list">
-            {
-                list.map(item => {
-                    return (<ListItem { ...item } key={ item.trainNumber }/>)
-                })
-            }
+            {list.map(item => {
+                return <ListItem {...item} key={item.trainNumber} />;
+            })}
         </ul>
     );
 });
 
 List.propTypes = {
-    list: PropTypes.array.isRequired
+    list: PropTypes.array.isRequired,
 };
 
 export default List;

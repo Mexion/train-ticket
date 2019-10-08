@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 export default function Back(props) {
     const {
@@ -10,20 +10,20 @@ export default function Back(props) {
         points = "25,13 16,21 25,29",
         stroke = "#fff",
         strokeWidth = "2",
-        fill = "none"
-    } = props
+        fill = "none",
+    } = props;
     return (
-        <div className={ className } onClick={ ()=> onBack() }>
-            <svg width={ width } height={ height }>
+        <div className={className} onClick={() => onBack()}>
+            <svg width={width} height={height}>
                 <polyline
-                        points={ points }
-                        stroke={ stroke }
-                        strokeWidth={ strokeWidth }
-                        fill={ fill }
-                    />
+                    points={points}
+                    stroke={stroke}
+                    strokeWidth={strokeWidth}
+                    fill={fill}
+                />
             </svg>
         </div>
-    )
+    );
 }
 
 Back.propTypes = {
@@ -34,5 +34,5 @@ Back.propTypes = {
     points: PropTypes.string,
     stroke: PropTypes.string,
     strokeWidth: PropTypes.string,
-    fill: PropTypes.string
-}
+    fill: PropTypes.string,
+};

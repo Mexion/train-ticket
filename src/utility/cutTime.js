@@ -1,9 +1,8 @@
-/** 
+/**
  * <功能函数，将Unix时间戳只精简到天>
  * @param timestamp unix时间戳,default：Date.now()
  * @return 返回一个修改后的Unix时间戳
-*/
-
+ */
 
 export default (timestamp = Date.now()) => {
     const time = new Date(timestamp);
@@ -14,4 +13,4 @@ export default (timestamp = Date.now()) => {
     time.setMilliseconds(0);
 
     return time.getTime();
-}
+};
