@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import URI from 'urijs';
 import dayjs from 'dayjs';
@@ -11,7 +12,16 @@ import {
     setSeatTypeAction,
      setSearchParsedAction,
 
-     fetchInitialAction
+     fetchInitialAction,
+
+     createAdultAction,
+     createChildAction,
+     removePassengerAction,
+     updatePassengerAction,
+     hideMenuAction,
+     showGenderMenuAction,
+     showFollowAdultMenuAction,
+     showTicketTypeMenuAction
 } from './store/actionCreator';
 
 import Header from '../common/Header';
@@ -19,7 +29,8 @@ import Detail from '../common/Detail';
 import Seat from './components/Seat';
 import Account from './components/Account';
 import Choose from './components/Choose';
-import passengers from './components/Passengers';
+import Passengers from './components/Passengers';
+import Menu from './components/Menu';
 
 import './App.css';
 
@@ -59,7 +70,7 @@ function App(props) {
 
         dispatch(setSearchParsedAction(true));
 
-    }, []);
+    }, [dispatch]);
 
     useEffect(() => {
         if(!searchParsed) return;
@@ -73,6 +84,26 @@ function App(props) {
         //dispatch异步action抓取数据并将数据保存到store中
         dispatch(fetchInitialAction(url));
     }, [searchParsed, departStation, arriveStation, departDate, seatType, dispatch]);
+
+    //绑定传入passengers组件的回调
+    const passengersCbs = useMemo(() => {
+        return bindActionCreators({
+            createAdult: createAdultAction,
+            createChild: createChildAction,
+            removePassenger: removePassengerAction,
+            updatePassenger: updatePassengerAction,
+            showGenderMenu: showGenderMenuAction,
+            showFollowAdultMenu: showFollowAdultMenuAction,
+            showTicketTypeMenu: showTicketTypeMenuAction
+        }, dispatch);
+    }, [dispatch]);
+
+    //绑定传入Menu组件的回调
+    const menuCbs = useMemo(() => {
+        return bindActionCreators({
+            hideMenu: hideMenuAction
+        }, dispatch);
+    }, [dispatch]);
 
     //如果解析未成功，什么都不渲染
     if(!searchParsed) {
@@ -103,6 +134,15 @@ function App(props) {
                     ></span>
                 </Detail>
             </div>
+            <Seat price={ price } type={ seatType }/>
+            <Passengers 
+                passengers={ passengers }
+                { ...passengersCbs }/>
+            <Menu
+                show={ isMenuVisible }
+                { ...menu }
+                { ...menuCbs }
+                />
         </div>
     )
 }

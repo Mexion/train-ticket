@@ -69,7 +69,7 @@ const Seat = memo(function Seat(props) {
             <div className="bar" onClick={ ()=> onToggle(index) }>
                 <span className="seat">{ type }</span>
                 <span className="price">
-                    <i>￥</i>
+                    <i>¥</i>
                     { priceMsg }
                 </span>
                 <span className="btn">{ expended ? '收起' : '预定' }</span>
