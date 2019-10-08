@@ -22,7 +22,7 @@ const Passenger = memo(function Passenger(props) {
     const isAdult = ticketType === 'adult';
 
     return (
-       <li className="passenger">
+        <li className="passenger">
             <i 
                 className="delete"
                 onClick={ () => onRemove(id) }>-</i>
@@ -78,7 +78,7 @@ const Passenger = memo(function Passenger(props) {
                 </li>)
                 }
                 { !isAdult && (
-                    <li className="item arrow">
+                <li className="item arrow">
                     <label className="label follow-adult">同行成人</label>
                     <input 
                         type="text" 
@@ -92,7 +92,7 @@ const Passenger = memo(function Passenger(props) {
                 )
                 }
             </ol>
-       </li> 
+        </li> 
     );
 });
 

@@ -135,24 +135,26 @@ const Slider = memo(function Slider(props) {
     //使用useEffect声明副作用
     useEffect(() => {
         //使用ref对象的current才能获取到DOM对象
+        const handleStart = startHandle.current;
+        const handleEnd = endHandle.current;
         //这里绑定左边滑块的事件
-        startHandle.current.addEventListener(
+        handleStart.addEventListener(
             'touchstart',
             onStartTouchBegin,
             false
         );
-        startHandle.current.addEventListener(
+        handleStart.addEventListener(
             'touchmove',
             onStartTouchMove,
             false
         );
         //绑定右边滑块事件
-        endHandle.current.addEventListener(
+        handleEnd.addEventListener(
             'touchstart',
             onEndTouchBegin,
             false
         );
-        endHandle.current.addEventListener(
+        handleEnd.addEventListener(
             'touchmove',
             onEndTouchMove,
             false
@@ -160,22 +162,22 @@ const Slider = memo(function Slider(props) {
 
         //useEffect返回一个函数来解绑事件
         return () => {
-            startHandle.current.removeEventListener(
+            handleStart.removeEventListener(
                 'touchstart',
                 onStartTouchBegin,
                 false
             );
-            startHandle.current.removeEventListener(
+            handleStart.removeEventListener(
                 'touchmove',
                 onStartTouchMove,
                 false
             );
-            endHandle.current.removeEventListener(
+            handleEnd.removeEventListener(
                 'touchstart',
                 onEndTouchBegin,
                 false
             );
-            endHandle.current.removeEventListener(
+            handleEnd.removeEventListener(
                 'touchmove',
                 onEndTouchMove,
                 false
@@ -204,10 +206,10 @@ const Slider = memo(function Slider(props) {
                             left: startPercent + '%',
                             width: endPercent - startPercent + '%' }}></div>
                     <i ref={ startHandle } className="slider-handle" style={{ left: startPercent + '%' }}>
-                            <span>{ startText }</span>
+                        <span>{ startText }</span>
                     </i>
                     <i ref={ endHandle } className="slider-handle" style={{ left: endPercent + '%' }}>
-                            <span>{ endText }</span>
+                        <span>{ endText }</span>
                     </i>
                 </div>
             </div>

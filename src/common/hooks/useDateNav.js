@@ -21,4 +21,4 @@ export default function useDateNav(departDate, dispatch, setPrevDateAction, setN
         prevClick,
         nextClick
     };
-};
+}

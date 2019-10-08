@@ -93,9 +93,10 @@ const BottomModal = memo(function BottomModal(props) {
 
     function checkedReducer(state, action) {
         const { type, payload } = action;
+        let newState;
         switch (type) {
             case 'toggle':
-                const newState = JSON.parse(JSON.stringify(state));
+                newState = JSON.parse(JSON.stringify(state));
                 if(payload in newState) {
                     delete newState[payload];
                 } else {
@@ -109,7 +110,7 @@ const BottomModal = memo(function BottomModal(props) {
             default:
         }
         return state;
-    };
+    }
 
     //因为要点击确定后才生效，所以需要生成本地化缓存数据
     const [localCheckedTicketTypes, localCheckedTicketTypesDispatch] = useReducer(checkedReducer, checkedTicketTypes, (checkedTicketTypes) => {

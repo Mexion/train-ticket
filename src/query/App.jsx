@@ -83,7 +83,7 @@ function App(props) {
         if(!from || !to || !date) {
             alert('参数错误！');    
             return;
-        };
+        }
 
         dispatch(setFromAction(from));
         dispatch(setToAction(to));
@@ -186,13 +186,13 @@ function App(props) {
 
      if (!searchParsed) {
          return null;
-     };
+     }
 
     return (
         <Fragment>
-           <div className="header-wrapper">
+            <div className="header-wrapper">
                 <Header title={ `${ from } ⇀ ${ to }` } onBack={ onBack }/>
-           </div>
+            </div>
             <DateNav
                 date={ departDate }
                 isPrevDisabled={ isPrevDisabled }

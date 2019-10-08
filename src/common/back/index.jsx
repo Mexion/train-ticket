@@ -14,15 +14,15 @@ export default function Back(props) {
     } = props
     return (
         <div className={ className } onClick={ ()=> onBack() }>
-                <svg width={ width } height={ height }>
-                    <polyline
+            <svg width={ width } height={ height }>
+                <polyline
                         points={ points }
                         stroke={ stroke }
                         strokeWidth={ strokeWidth }
                         fill={ fill }
                     />
-                </svg>
-            </div>
+            </svg>
+        </div>
     )
 }
 

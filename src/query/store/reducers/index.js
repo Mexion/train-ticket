@@ -54,11 +54,12 @@ export default {
     },
      highSpeed(state = false,action) {
         const { type, payload } = action;
+        let checkedTrainTypes;
         switch (type) {
             case SET_HIGH_SPEED:
                 return payload;
             case SET_CHECKED_TRAIN_TYPES:
-                const checkedTrainTypes = payload;
+                checkedTrainTypes = payload;
                 return Boolean(checkedTrainTypes[1] && checkedTrainTypes[5]);
             default:
         }
@@ -138,13 +139,14 @@ export default {
     },
     checkedTrainTypes(state = {},action) {
         const { type, payload } = action;
+        let highSpeed, newCheckedTrainTypes;
         switch (type) {
             case SET_CHECKED_TRAIN_TYPES:
                 return payload;
                 //捕获到高铁动车选择的action，同步更新选择的状态
             case SET_HIGH_SPEED:
-                const highSpeed = payload;
-                const newCheckedTrainTypes = { ...state };
+                highSpeed = payload;
+                newCheckedTrainTypes = { ...state };
                 if(highSpeed) {
                     newCheckedTrainTypes[1] = true;
                     newCheckedTrainTypes[5] = true;

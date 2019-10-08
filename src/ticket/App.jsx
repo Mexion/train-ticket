@@ -134,19 +134,19 @@ function App(props) {
 
    return (
        <div className="app">
-            <div className="header-wrapper">
-                <Header  title={ trainNumber } onBack={ onBack }/>
-            </div>
-            <div className="nav-wrapper">
-                <DateNav
+           <div className="header-wrapper">
+               <Header  title={ trainNumber } onBack={ onBack }/>
+           </div>
+           <div className="nav-wrapper">
+               <DateNav
                     date={ departDate }
                     isPrevDisabled={ isPrevDisabled }
                     isNextDisabled={ isNextDisabled }
                     prevClick={ prevClick }
                     nextClick={ nextClick }/>
-            </div>
-            <div className="detail-wrapper">
-                <Detail
+           </div>
+           <div className="detail-wrapper">
+               <Detail
                     departDate={ departDate }
                     arriveDate={ arriveDate }
                     departTimeStr={ departTimeStr }
@@ -155,27 +155,27 @@ function App(props) {
                     departStation={ departStation }
                     arriveStation={ arriveStation }
                     durationStr={ durationStr }>
-                    <span className="left"></span>
-                        <span className="schedule" onClick={ () => detailCbs.toggleIsScheduleVisible() }>时刻表</span>
-                        <span className="right"></span>
-                </Detail>
-            </div>
-            <TrainContext.Provider value={ { trainNumber, departStation, arriveStation, departDate } }>
-                <Candidate tickets={ tickets }/>
-            </TrainContext.Provider>
-            { isScheduleVisible &&
-                <div 
+                   <span className="left"></span>
+                   <span className="schedule" onClick={ () => detailCbs.toggleIsScheduleVisible() }>时刻表</span>
+                   <span className="right"></span>
+               </Detail>
+           </div>
+           <TrainContext.Provider value={ { trainNumber, departStation, arriveStation, departDate } }>
+               <Candidate tickets={ tickets }/>
+           </TrainContext.Provider>
+           { isScheduleVisible &&
+           <div 
                     className="mask" 
                     onClick={ () => dispatch(toggleIsScheduleVisibleAction()) }>
-                    <Suspense fallback={ <div>loading</div> }>
-                        <Schedule
+               <Suspense fallback={ <div>loading</div> }>
+                   <Schedule
                             date={ departDate }
                             trainNumber={ trainNumber }
                             departStation={ departStation }
                             arriveStation={ arriveStation }
                         />
-                    </Suspense>
-                </div>
+               </Suspense>
+           </div>
             }
        </div>);
 }
