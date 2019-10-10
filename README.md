@@ -10,17 +10,17 @@
 
 ### Demo：
 
-You can visit [train-ticket.]('https://trai-ticket.mexion.xyz')
+You can visit [train-ticket.](https://trai-ticket.mexion.xyz)
 
-![index]('https://i.loli.net/2019/10/11/ugweEVz1bBs2iX3.jpg')
+![index.jpg](https://i.loli.net/2019/10/11/ugweEVz1bBs2iX3.jpg)
 
 ![date-selector]('https://i.loli.net/2019/10/11/A16n7d9HpfzoXvI.jpg')
 
-![ticket-list]('https://i.loli.net/2019/10/11/6AIPaq3E9wWFojV.jpg')
+![ticket-list.jpg](https://i.loli.net/2019/10/11/NIWxheM7PbFRtQ3.jpg)
 
-![seat]('https://i.loli.net/2019/10/11/NIWxheM7PbFRtQ3.jpg')
+![seat.jpg](https://i.loli.net/2019/10/11/6AIPaq3E9wWFojV.jpg)
 
-![order]('https://i.loli.net/2019/10/11/9F6KrpcRZoxD2L8.jpg')
+![order.jpg](https://i.loli.net/2019/10/11/A16n7d9HpfzoXvI.jpg)
 
 ### Start
 
