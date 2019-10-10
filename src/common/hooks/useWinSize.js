@@ -7,7 +7,7 @@ export default function useWinSize() {
     function onResize() {
         //窗口大小发生改变时重新获取整个文档的宽高
         setWidth(document.documentElement.clientWidth);
-        setHight(document.document.clientHeight);
+        setHight(document.documentElement.clientHeight);
     }
 
     useEffect(() => {
