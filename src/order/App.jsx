@@ -31,6 +31,7 @@ import Passengers from "./components/Passengers";
 import Menu from "./components/Menu";
 
 import "./App.css";
+import { BACK_END_URL } from "../utility/config";
 
 function App(props) {
     const {
@@ -72,7 +73,7 @@ function App(props) {
     useEffect(() => {
         if (!searchParsed) return;
         //发起异步请求抓取数据
-        const url = new URI("/rest/order")
+        const url = new URI(`${BACK_END_URL}/rest/order`)
             .setSearch("dStation", departStation)
             .setSearch("aStation", arriveStation)
             .setSearch("date", dayjs(departDate).format("YYYY-MM-DD"))

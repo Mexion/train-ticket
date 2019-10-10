@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useCallback, memo } from "react";
 import PropTypes from "prop-types";
+import { BACK_END_URL } from "../../utility/config";
 
 import Back from "../Back";
 
@@ -138,7 +139,9 @@ const Suggest = memo(function Suggest(props) {
 
     useEffect(() => {
         if (searchKey.length <= 0) return;
-        fetch(`/rest/search?key=${encodeURIComponent(searchKey)}`)
+        fetch(
+            `${BACK_END_URL}/rest/search?key=${encodeURIComponent(searchKey)}`
+        )
             .then(res => res.json())
             .then(data => {
                 const { result, searchKey: sKey } = data;

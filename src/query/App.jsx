@@ -37,6 +37,8 @@ import {
     setArriveTimeEndAction,
 } from "./store/actionCreator.js";
 
+import { BACK_END_URL } from "../utility/config";
+
 import "./App.css";
 
 function App(props) {
@@ -91,7 +93,7 @@ function App(props) {
     useEffect(() => {
         if (!searchParsed) return;
         //生成一串search的字符串
-        const url = new URI("/rest/query")
+        const url = new URI(`${BACK_END_URL}/rest/query`)
             .setSearch("from", from)
             .setSearch("to", to)
             .setSearch("date", dayjs(departDate).format("YY-MM-DD"))

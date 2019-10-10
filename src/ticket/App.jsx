@@ -27,6 +27,8 @@ import {
     toggleIsScheduleVisibleAction,
 } from "./store/actionCreator";
 
+import { BACK_END_URL } from "../utility/config";
+
 //引入自定义hooks以复用逻辑
 import useDateNav from "../common/hooks/useDateNav";
 
@@ -78,7 +80,7 @@ function App(props) {
     useEffect(() => {
         if (!searchParsed) return;
 
-        const url = new URI("/rest/ticket")
+        const url = new URI(`${BACK_END_URL}/rest/ticket`)
             .setSearch("date", dayjs(departDate).format("YYYY-MM-DD"))
             .setSearch("trainNumber", trainNumber)
             .toString();

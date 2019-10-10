@@ -10,6 +10,8 @@ import {
     SET_DEPART_DATE,
 } from "./actionTypes";
 
+import { BACK_END_URL } from "../../utility/config";
+
 export function setFromAction(from) {
     return {
         type: SET_FROM,
@@ -123,7 +125,7 @@ export function fetchCityDataAction() {
             return;
         }
         dispatch(setIsLoadingCityDataAction(true));
-        fetch(`/rest/cities?_${Date.now()}`)
+        fetch(`${BACK_END_URL}/rest/cities?_${Date.now()}`)
             .then(res => res.json())
             .then(cityData => {
                 dispatch(setCityDataAction(cityData));

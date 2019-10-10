@@ -102,7 +102,7 @@ export function setSearchParsedAction(searchParsed) {
 
 //拉取数据的异步action
 export function fetchInitialAction(url) {
-    return (dispatch, getState) => {
+    return dispatch => {
         //拉取数据
         fetch(url)
             .then(res => res.json())

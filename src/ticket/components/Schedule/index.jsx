@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import URI from "urijs";
 import dayjs from "dayjs";
 
+import { BACK_END_URL } from "../../../utility/config";
+
 import "./index.css";
 
 const ScheduleRow = memo(function ScheduleRow(props) {
@@ -86,7 +88,7 @@ const Schedule = memo(function Schedule(props) {
 
     useEffect(() => {
         //构造请求接口
-        const url = new URI("/rest/schedule")
+        const url = new URI(`${BACK_END_URL}/rest/schedule`)
             .setSearch("trainNumber", trainNumber)
             .setSearch("departStation", departStation)
             .setSearch("arriveStation", arriveStation)
