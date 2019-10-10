@@ -14,7 +14,7 @@ You can visit [train-ticket.](https://trai-ticket.mexion.xyz)
 
 ![index.jpg](https://i.loli.net/2019/10/11/ugweEVz1bBs2iX3.jpg)
 
-![date-selector.jpg](https://i.loli.net/2019/10/11/A16n7d9HpfzoXvI.jpg)
+![date-selector.jpg](https://i.loli.net/2019/10/11/9F6KrpcRZoxD2L8.jpg)
 
 ![ticket-list.jpg](https://i.loli.net/2019/10/11/NIWxheM7PbFRtQ3.jpg)
 
