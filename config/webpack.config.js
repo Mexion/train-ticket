@@ -1,5 +1,3 @@
-
-
 const fs = require("fs");
 const isWsl = require("is-wsl");
 const path = require("path");
@@ -179,14 +177,14 @@ module.exports = function(webpackEnv) {
             // There will be one main bundle, and one file per asynchronous chunk.
             // In development, it does not produce real files.
             filename: isEnvProduction
-                ? "static/js/[name].[contenthash:8].js"
-                : isEnvDevelopment && "static/js/[name].js",
+                ? "js/[name].[contenthash:8].js"
+                : isEnvDevelopment && "js/[name].js",
             // TODO: remove this when upgrading to webpack 5
             futureEmitAssets: true,
             // There are also additional JS chunk files if you use code splitting.
             chunkFilename: isEnvProduction
-                ? "static/js/[name].[contenthash:8].chunk.js"
-                : isEnvDevelopment && "static/js/[name].chunk.js",
+                ? "js/[name].[contenthash:8].chunk.js"
+                : isEnvDevelopment && "js/[name].chunk.js",
             // We inferred the "public path" (such as / or /my-project) from homepage.
             // We use "/" in development.
             publicPath: publicPath,
