@@ -10,7 +10,7 @@
 
 ### Demo：
 
-You can visit [train-ticket.](https://trai-ticket.mexion.xyz)
+You can visit [train-ticket.](https://train-ticket.mexion.xyz)
 
 ![index.jpg](https://i.loli.net/2019/10/11/ugweEVz1bBs2iX3.jpg)
 
